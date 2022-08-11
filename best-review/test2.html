@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function urlParams(){
+				var afterUrl =  window.location.search.substring(1);
+			    var params = (afterUrl.split('=')[1]).split(',');
+				console.log(params);
+				return params;
+			}
+			// var selectNums = '';
+			function selectInit(params){
+				var products = document.getElementById('products');
+				var arrs = document.getElementsByTagName('option');
+				for(var i = 0; i < products.options.length; i++){
+					for(var j = 0; j < params.length; j++){
+					    if( products.options[i].value == params[j] ){
+							// selectNums = selectNums + i + ',';
+							arrs[i].setAttribute('selected',true);
+							// products.options[i].selected = true;
+							break;
+						}
+					}
+				}
+			}
+			
+			function submitAndMailTo(){
+				console.log('submitAndMailTo');
+				// console.log(urlParams());
+				var name = document.getElementById('name').value;
+				console.log(name);
+				var email = document.getElementById('email').value;
+				console.log(email);
+				var phoneNum = document.getElementById('phoneNum').value;
+				console.log(phoneNum);
+				var orderId = document.getElementById('orderId').value;
+				console.log(orderId);
+				var agree = document.getElementById('rule')
+				if(!name || !email || !phoneNum || !orderId || !agree){
+					alert('请填写完整并勾选同意再提交')
+				}else{
+					var website = "mitsuha.candy@outlook.com";
+				    var body =  name + "<br/>" + email + "<br/>" + phoneNum + "<br/>" + orderId + "<br/>" + urlParams();
+				    var toUrl = "mailto:" + website + "?subject=" + 'test' + "&body=" + body;
+					
+				    document.getElementById("sendEmail").setAttribute("href", toUrl);
+					window.open('../BestReview/test3.html');
+				}
+				
+			}
+		</script>
+		<style type="text/css">
+			html,body{width: 100%;height: 100%;display: flex;flex-direction: column;justify-content: center;}
+			div{display: inline-block;}
+			a{color: #000000; text-decoration: none;}
+			[type="text"],[type="email"]{height: 25px;padding: 2px 10px;}
+			select{overflow: hidden;}
+			option{padding: 10px 10px;line-height: 20px;}
+			#app{text-align: center;margin: 0 auto;min-width: 650px;}
+			.form-line{display: flex;text-align: left;}
+			.form-item,[type="text"],[type="email"],select{width: 100%;margin: 10px 20px;}
+			label{display: block;}
+			[type="submit"]{border: none;font-size: 17px;padding: 10px 20px; }
+		</style>
+	</head>
+	<body onload="selectInit(urlParams())">
+		<div id="app">
+			<h2>REGISTER YOUR EXTENDED WARRANTY</h2>
+			<h3>Complete this form to register the warranty for your product</h3>
+			<form method="post">
+				<div class="form-line">
+					<div class="form-item">
+						<label>Name</label>
+						<input type="text" name="name" id="name" placeholder="NAME" required="required" />
+					</div>
+				</div>
+				<div class="form-line">
+					<div class="form-item">
+						<label>Amazon Email Address</label>
+						<input type="email" name="email" id="email" placeholder="EMAIL" required="required" />
+					</div>
+				</div>
+				<div class="form-line">
+					<div class="form-item">
+						<label>Phone Number</label>
+						<input type="text" name="phoneNum" id="phoneNum" placeholder="OPTIONAL" required="required" />
+					</div>
+					<div class="form-item">
+						<label>Amazon Order ID</label>
+						<input type="text" name="orderId" id="orderId" placeholder="AMAZON ORDER ID" required="required" />
+					</div>
+				</div>
+				<div class="form-line">
+					<div class="form-item">
+						<label>Products</label>
+						<select id="products" name="products" disabled="disabled" multiple="multiple" size="5"  >
+							<option value="PowerConverter">Power Converter</option>
+							<option value="MassageGunWithEMS">Massage Gun with EMS</option>
+							<option value="SmartWatch">Smart Watch</option>
+							<option value="HeatedVest">Heated Vest</option>
+							<option value="HeatedSocks">Heated Socks</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-line" style="display: block;">
+					<div class="form-item" style="vertical-align: text-top;display: inline-block;">
+						<input type="radio" name="rule" id="rule" value="agree" required="required"  />
+						<div>I agree to receive further detail and promotions</div>
+					</div>
+				</div>
+				<!-- <button type="submit" onclick="submitAndMailTo()">
+					<a id="sendEmail" href="" >PROTECT MY PRODUCT</a>
+				</button> -->
+				
+			</form>
+			<a id="sendEmail" href="" onclick="submitAndMailTo()">PROTECT MY PRODUCT</a>
+		</div>
+	</body>
+</html>

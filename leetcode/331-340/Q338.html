@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <script></script>
+    <style></style>
+</head>
+
+<body>
+    <!-- 
+给定一个非负整数 num。对于 0 ≤ i ≤ num 范围中的每个数字 i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
+
+示例 1:
+
+输入: 2
+输出: [0,1,1]
+示例 2:
+
+输入: 5
+输出: [0,1,1,2,1,2]
+
+
+         -->
+    <script>
+        /**
+          * @param {number} num
+          * @return {number[]}
+          */
+        var countBits = function (num) {
+            let res = [], yuNum, len, count = 0
+            while (num > 0) {
+                // 0 1
+                yuNum = num % 2
+                if (yuNum == 1) count++
+                // 1 0
+                num = Math.floor(num / 2)
+                res.push(yuNum)
+            }
+            len = res.length
+            let index = res.indexOf(1), proIndex = 0;
+            res.splice(len ,0 ,count)
+            while (index != -1 && proIndex < len && count != 1) {
+                index = res.indexOf(1, proIndex)
+                res.push(index)
+                proIndex = index + 1
+            }
+            return res
+        };
+        console.log(countBits(8))
+    </script>
+</body>
+
+</html>

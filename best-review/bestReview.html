@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Best Review Refund</title>
+		
+		<script type="text/javascript">
+			function submitAndJump(){
+				var res = '';
+				var objs = document.getElementsByName('equipment')
+				for( var i = 0; i < objs.length; i++){
+					if(objs[i].checked){
+						if(res === '')res = objs[i].value ;
+						else res = res + ',' + objs[i].value ;
+					}
+				}
+				if(res == '')alert('请勾选产品再提交');
+				// window.location.href = 'test2.html?opts='+res
+				else window.open('../BestReview/test2.html?opts='+res)
+			}
+		</script>
+		<style>
+			html,body{position: relative;height: 100%;width: 100%;display: flex;flex-direction: column;justify-content: center;}
+			h2,form{text-align: center;margin: 10px auto;}
+			#form-item{
+				margin: 2px auto;
+				text-align: left;
+				background: #cccccc;
+				padding: 10px 30px;
+				border-radius: 20px;
+			}
+			div{display: inline-block;}
+			.item-line{
+				display: block;
+				white-space: nowrap;
+				border-bottom: 1px solid #FFFFFF;
+			}
+			label{
+				padding: 10px 57px;
+				border-radius: 5px;
+				border-bottom: 1px solid #ffffff;
+				/* background: #cccccc; */
+				margin: 5px auto;
+			}
+			[type="button"]{
+				border: none;
+				font-size: 20px;
+				padding: 10px 30px;
+				margin: 20px auto;
+				/* border-radius: 20px; */
+			}
+			[type="checkbox"]{
+				margin: 10px auto;
+				border-bottom: 1px solid #FFFFFF;
+				width: 30px;
+				height: 18px;
+			}
+		</style>
+	</head>
+	<body>
+	
+	    <h2>Choose the product that you are looking to Register</h2>
+	    <form>
+		    <label>Choose Your Product</label>
+		    <br/><br/>
+		    <div id="form-item">
+		    	<div class="item-line">
+		    		<input type="checkbox" name="equipment" value ="PowerConverter"/>
+					<div class="item-txt">Power Converter</div><br/>
+		    	</div>
+				<div class="item-line">
+					<input type="checkbox" name="equipment" value ="MassageGunWithEMS"/>
+					<div class="item-txt">Massage Gun with EMS</div><br/>
+				</div>
+				<div class="item-line">
+					<input type="checkbox" name="equipment" value ="SmartWatch"/>
+					<div class="item-txt">Smart Watch</div><br/>
+				</div>
+				<div class="item-line">
+					<input type="checkbox" name="equipment" value ="HeatedVest"/>
+					<div class="item-txt">Heated Vest</div><br/>
+				</div>
+				<div class="item-line">
+					<input type="checkbox" name="equipment" value ="HeatedSocks"/>
+					<div class="item-txt">Heated Socks</div><br/>
+				</div>
+		    </div>
+			<br/><br/>
+		    <input type="button" value="submit"  onclick="submitAndJump()" />
+	    </form>
+	    </body>
+</html>
